@@ -1,4 +1,6 @@
-return require 'game.level' [[
+return require('game.level'):extend({
+
+mapString = [[
 
         D*              D*
 
@@ -21,9 +23,6 @@ p>                D4
 
 
                 RT
-
-
-
 
 
 h>
@@ -86,6 +85,6 @@ D2                      pv
                         pv
                         pv
                         pv
-
-
 ]]
+
+})

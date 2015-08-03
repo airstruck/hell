@@ -27,4 +27,4 @@ end)
 
 -- set the stage with the title scene
 
-require 'game.stage' 'title'
+require 'game.stage' 'menu'

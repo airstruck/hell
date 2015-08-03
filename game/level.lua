@@ -12,7 +12,7 @@ function Level:constructor (mapString)
     self.symbols = require('game.level.symbols')()
     self.progress = 0
     self.nextRow = 0
-    self.map = self:loadMap(mapString)
+    self.map = self:loadMap(mapString or self.mapString)
     self.rowCount = #self.map
 end
 

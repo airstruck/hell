@@ -51,8 +51,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.48462403"
-     inkscape:cx="372.04724"
-     inkscape:cy="526.18109"
+     inkscape:cx="371.87975"
+     inkscape:cy="774.08722"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -82,7 +82,17 @@
      inkscape:groupmode="layer"
      id="layer1">
     <rect
-       style="fill:#fcaf3e"
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       inkscape:export-filename="/home/owner/Projects/hell/resource/sprite/turret.chain.png"
+       y="407.36218"
+       x="490"
+       height="25"
+       width="20"
+       id="rect4286"
+       style="fill:#75507b" />
+    <rect
+       style="fill:#ad7fa8"
        id="rect4282"
        width="25"
        height="15"
@@ -97,16 +107,16 @@
        height="25"
        width="15"
        id="rect4280"
-       style="fill:#fcaf3e"
+       style="fill:#ad7fa8"
        inkscape:export-filename="/home/owner/Projects/hell/resource/sprite/bullet.chain.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <rect
-       style="fill:#f57900"
+       style="fill:#75507b"
        id="rect4268"
-       width="40"
+       width="25.000015"
        height="55"
-       x="500"
+       x="505"
        y="392.36218"
        inkscape:export-filename="/home/owner/Projects/hell/resource/sprite/turret.chain.png"
        inkscape:export-xdpi="90"
@@ -147,12 +157,12 @@
        height="20"
        width="30"
        id="rect3994"
-       style="fill:#ad7fa8"
+       style="fill:#f57900"
        inkscape:export-filename="/home/owner/Projects/hell/resource/sprite/turret.rail.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <rect
-       style="fill:#ad7fa8"
+       style="fill:#f57900"
        id="rect3990"
        width="30"
        height="20"
@@ -302,7 +312,7 @@
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <rect
-       style="fill:#75507b"
+       style="fill:#ce5c00"
        id="rect3986"
        width="60"
        height="60"
@@ -317,12 +327,12 @@
        height="40"
        width="40"
        id="rect3988"
-       style="fill:#ad7fa8"
+       style="fill:#f57900"
        inkscape:export-filename="/home/owner/Projects/hell/resource/sprite/turret.rail.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <rect
-       style="fill:#ad7fa8"
+       style="fill:#fcaf3e"
        id="rect3992"
        width="45"
        height="20"
@@ -337,12 +347,12 @@
        height="20"
        width="45"
        id="rect3996"
-       style="fill:#ad7fa8"
+       style="fill:#fcaf3e"
        inkscape:export-filename="/home/owner/Projects/hell/resource/sprite/bullet.rail.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <rect
-       style="fill:#ad7fa8"
+       style="fill:#fcaf3e"
        id="rect3998"
        width="15"
        height="10"
@@ -357,12 +367,12 @@
        height="10"
        width="15"
        id="rect4011"
-       style="fill:#ad7fa8"
+       style="fill:#fcaf3e"
        inkscape:export-filename="/home/owner/Projects/hell/resource/sprite/bullet.rail.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <rect
-       style="fill:#75507b"
+       style="fill:#f57900"
        id="rect4013"
        width="35"
        height="10"
@@ -377,7 +387,7 @@
        height="10"
        width="35"
        id="rect4015"
-       style="fill:#75507b"
+       style="fill:#f57900"
        inkscape:export-filename="/home/owner/Projects/hell/resource/sprite/bullet.rail.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
@@ -387,12 +397,12 @@
        height="20"
        width="20"
        id="rect4017"
-       style="fill:#75507b"
+       style="fill:#ce5c00"
        inkscape:export-filename="/home/owner/Projects/hell/resource/sprite/turret.rail.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <rect
-       style="fill:#75507b"
+       style="fill:#ce5c00"
        id="rect4019"
        width="20"
        height="20"
@@ -402,7 +412,7 @@
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <rect
-       style="fill:#75507b"
+       style="fill:#ce5c00"
        id="rect4021"
        width="20"
        height="20"
@@ -417,7 +427,7 @@
        height="20"
        width="20"
        id="rect4034"
-       style="fill:#75507b"
+       style="fill:#ce5c00"
        inkscape:export-filename="/home/owner/Projects/hell/resource/sprite/turret.rail.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
@@ -430,12 +440,12 @@
        height="20"
        width="10"
        id="rect4044"
-       style="fill:#ad7fa8" />
+       style="fill:#fcaf3e" />
     <rect
        inkscape:export-ydpi="90"
        inkscape:export-xdpi="90"
        inkscape:export-filename="/home/owner/Projects/hell/resource/sprite/particle.rail.png"
-       style="fill:#ad7fa8"
+       style="fill:#fcaf3e"
        id="rect4046"
        width="10"
        height="20"
@@ -450,12 +460,12 @@
        height="10"
        width="20"
        id="rect4048"
-       style="fill:#ad7fa8" />
+       style="fill:#fcaf3e" />
     <rect
        inkscape:export-ydpi="90"
        inkscape:export-xdpi="90"
        inkscape:export-filename="/home/owner/Projects/hell/resource/sprite/particle.rail.png"
-       style="fill:#ad7fa8"
+       style="fill:#fcaf3e"
        id="rect4050"
        width="20"
        height="10"
@@ -470,12 +480,12 @@
        height="10"
        width="10"
        id="rect4052"
-       style="fill:#75507b" />
+       style="fill:#f57900" />
     <rect
        inkscape:export-ydpi="90"
        inkscape:export-xdpi="90"
        inkscape:export-filename="/home/owner/Projects/hell/resource/sprite/particle.rail.png"
-       style="fill:#75507b"
+       style="fill:#f57900"
        id="rect4054"
        width="10"
        height="10"
@@ -865,9 +875,9 @@
        id="rect4250"
        style="fill:#73d216" />
     <rect
-       style="fill:#fcaf3e"
+       style="fill:#ad7fa8"
        id="rect4252"
-       width="40"
+       width="45"
        height="45"
        x="495"
        y="397.36218"
@@ -875,9 +885,9 @@
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <rect
-       style="fill:#f57900"
+       style="fill:#75507b"
        id="rect4254"
-       width="55"
+       width="50"
        height="35"
        x="505"
        y="402.36218"
@@ -885,42 +895,32 @@
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <rect
-       style="fill:#ce5c00"
+       style="fill:#5c3566"
        id="rect4256"
-       width="50"
-       height="5"
+       width="40"
+       height="10"
        x="510"
-       y="407.36218"
+       y="402.36218"
        inkscape:export-filename="/home/owner/Projects/hell/resource/sprite/turret.chain.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <rect
        y="417.36218"
-       x="510"
+       x="530"
        height="5"
-       width="50"
+       width="20"
        id="rect4260"
-       style="fill:#ce5c00"
+       style="fill:#5c3566"
        inkscape:export-filename="/home/owner/Projects/hell/resource/sprite/turret.chain.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <rect
-       style="fill:#ce5c00"
+       style="fill:#5c3566"
        id="rect4262"
-       width="50"
-       height="5"
+       width="40"
+       height="10"
        x="510"
        y="427.36218"
-       inkscape:export-filename="/home/owner/Projects/hell/resource/sprite/turret.chain.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
-    <rect
-       y="407.36218"
-       x="500"
-       height="25"
-       width="5"
-       id="rect4264"
-       style="fill:#ce5c00"
        inkscape:export-filename="/home/owner/Projects/hell/resource/sprite/turret.chain.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
@@ -928,16 +928,16 @@
        y="432.36218"
        x="530"
        height="5"
-       width="30"
+       width="25"
        id="rect4270"
-       style="fill:#fcaf3e"
+       style="fill:#ad7fa8"
        inkscape:export-filename="/home/owner/Projects/hell/resource/sprite/turret.chain.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <rect
-       style="fill:#fcaf3e"
+       style="fill:#ad7fa8"
        id="rect4276"
-       width="30"
+       width="25"
        height="5"
        x="530"
        y="402.36218"
@@ -945,7 +945,7 @@
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <rect
-       style="fill:#f57900"
+       style="fill:#75507b"
        id="rect4278"
        width="15"
        height="15"
@@ -964,5 +964,45 @@
        height="20"
        x="125"
        y="642.36218" />
+    <rect
+       style="fill:#75507b"
+       id="rect4288"
+       width="19.999987"
+       height="25"
+       x="500"
+       y="407.36218"
+       inkscape:export-filename="/home/owner/Projects/hell/resource/sprite/turret.chain.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       inkscape:export-filename="/home/owner/Projects/hell/resource/sprite/turret.chain.png"
+       y="412.36218"
+       x="510"
+       height="15"
+       width="15"
+       id="rect4290"
+       style="fill:#ad7fa8" />
+    <rect
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       inkscape:export-filename="/home/owner/Projects/hell/resource/sprite/turret.chain.png"
+       y="407.36218"
+       x="550"
+       height="25"
+       width="5"
+       id="rect4292"
+       style="fill:#5c3566" />
+    <rect
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       inkscape:export-filename="/home/owner/Projects/hell/resource/sprite/turret.rail.png"
+       style="fill:#fcaf3e"
+       id="rect4308"
+       width="10"
+       height="10"
+       x="525"
+       y="137.36218" />
   </g>
 </svg>

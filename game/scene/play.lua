@@ -6,20 +6,12 @@ local Update = require 'game.system.update'
 local Draw = require 'game.system.draw'
 local Entity = require 'game.entity'
 
-local entities = {
-    Entity('player')
-}
-
-local level = require 'game.level.01'
-
-function Scene:load ()
-
-    love.mouse.setGrabbed(true)
+function Scene:load (level, entities)
 
     self:on('update', function (dt)
         level:update(entities, dt)
         for _, update in pairs(Update) do
-            update(entities, dt, level)
+            update(entities, dt)
         end
     end)
 
@@ -32,10 +24,11 @@ function Scene:load ()
 
     self:on('keypressed', function(key)
         if key == 'escape' then
-            self.stage:loadScene('title')
+            self.stage:loadScene('menu', level, entities)
         end
     end)
 
+    love.mouse.setGrabbed(true)
 end
 
 function Scene:unload ()
