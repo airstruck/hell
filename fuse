@@ -1,0 +1,1 @@
+rm ../hell.love; zip -r ../hell.love . -x *.git* -x fuse

@@ -21,10 +21,11 @@ Draw.sprite = System(
 { 'position', 'name', '_entity' },
 function (p, name, entity)
     local image, width, height = getSprite(name)
-    local offsetX = width * 0.5
-    local offsetY = height * 0.5
+    local ox, oy = width * 0.5, height * 0.5 -- offset
+    local kx, ky = 0, 0 -- shear
 
-    local angle = entity.trackingAngle
+    local angle = entity.fixedAngle
+        or entity.trackingAngle
         and entity.trackingAngle.value
         or entity.velocity
         and Vector.toAngle(entity.velocity.x, entity.velocity.y)
@@ -33,8 +34,12 @@ function (p, name, entity)
     local scale = entity.scale and entity.scale.value or spriteScale
 
     if entity.offset then
-        offsetX = offsetX + entity.offset.x
-        offsetY = offsetY + entity.offset.y
+        ox = ox + entity.offset.x
+        oy = oy + entity.offset.y
+    end
+
+    if entity.shearFactor and entity.velocity and entity.maxSpeed then
+        kx = kx - entity.shearFactor * (entity.velocity.x / entity.maxSpeed)
     end
 
     local alpha = entity.fade and 255 - entity.fade.value * 255 or 255
@@ -48,7 +53,7 @@ function (p, name, entity)
         end
     end
 
-    love.graphics.draw(image, p.x, p.y, angle, scale, scale, offsetX, offsetY)
+    love.graphics.draw(image, p.x, p.y, angle, scale, scale, ox, oy, kx, ky)
 
     Shader.unset()
 end)

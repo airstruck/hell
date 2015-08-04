@@ -1,7 +1,7 @@
 -- globals
 
 _G.HELL_DEBUG = false
-_G.HELL_VERSION = '0.0.1'
+_G.HELL_VERSION = '0.0.2'
 
 -- lock the global table
 

@@ -29,13 +29,13 @@ end
 
 local scroll = System(
 { 'position' },
-function (p, dt, level)
-    p.y = p.y + level.scrollSpeed * dt
+function (p, dt, scrollSpeed)
+    p.y = p.y + scrollSpeed * dt
 end)
 
 function Level:update (entities, dt)
 
-    scroll(entities, dt, self)
+    scroll(entities, dt, self.scrollSpeed)
 
     if self.nextRow >= self.rowCount then
         return

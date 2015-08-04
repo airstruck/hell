@@ -31,25 +31,28 @@ Update.collision = System(
 { 'position', 'size', 'damage', '_entity', '_index', '_entities' },
 function (posA, sizeA, damage, entityA, indexA, entities)
     for posB, sizeB, health, entityB, indexB
-    in System.each(entities, colliderComponents) do
-        if (posA ~= posB) and checkCollision(posA, sizeA, posB, sizeB) then
+    in System.each(entities, colliderComponents, System.reverse) do
+        if (posA ~= posB)
+        and (entityA.isFriendly ~= entityB.isFriendly)
+        and checkCollision(posA, sizeA, posB, sizeB) then
             -- Event.dispatch('collision', entityA, entityB)
             health.pain = health.pain + damage.value
             health.value = health.value - damage.value
             table.remove(entities, indexA)
-            spawn(entities, 10, 'particle.spark', posA.x, posA.y)
+            spawn(entities, 5, 'particle.spark', posA.x, posA.y)
             System.invalidate(entities)
         end
     end
-end)
+end, System.reverse)
 
 Update.death = System(
 {'position', 'health', '_index', '_entities'},
 function (p, health, index, entities, dt)
     if health.value <= 0 then
-        table.remove(entities, index)
+        local entity = table.remove(entities, index)
         spawn(entities, 5, 'particle.explosion', p.x, p.y)
         System.invalidate(entities)
+        Event.dispatch('death', entity)
     end
 end, System.reverse)
 
@@ -85,6 +88,14 @@ Update.velocity = System(
 function (p, v, dt)
     p.x = p.x + v.x * dt
     p.y = p.y + v.y * dt
+end)
+
+-- update velocity from turn angle
+
+Update.turn = System(
+{ 'velocity', 'turn' },
+function (v, turn, dt)
+    v.x, v.y = Vector.adjustAngle(v.x, v.y, turn.angle * dt)
 end)
 
 -- update delay time until next bullet can be fired
@@ -202,6 +213,30 @@ function (scale, dt)
     if scale.delta then
         scale.value = scale.value + scale.delta * dt
     end
+end)
+
+-- execute scheduled tasks
+
+Update.schedule = System(
+{ 'schedule' },
+function (schedule, dt)
+    local task = schedule[1]
+    if not task then
+        return
+    end
+    schedule.elapsed = (schedule.elapsed or 0) + dt
+    if task[1] > schedule.elapsed then
+        return
+    end
+    for target, values in pairs(task) do
+        if type(target) == 'table' then
+            for key, value in pairs(values) do
+                target[key] = value
+            end
+        end
+    end
+    schedule.elapsed = 0
+    table.remove(schedule, 1)
 end)
 
 return Update

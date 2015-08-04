@@ -1,7 +1,31 @@
 local Entity = require 'game.entity'
 
+local Vector = require 'game.vector'
+
 return function ()
     return {
+        -- small plane flying south, looping west to north
+        ['pJ'] = function (x, y)
+            local entity = Entity('mobile.plane', x, y,  0, 200)
+            entity.turn = { angle = 0 }
+            entity.schedule = {
+                { 1, [entity.turn] = { angle = 2 } },
+                { math.pi / 2, [entity.turn] = { angle = 0 } }
+            }
+            return entity
+        end,
+
+        -- small plane flying south, looping east to north
+        ['pL'] = function (x, y)
+            local entity = Entity('mobile.plane', x, y,  0, 200)
+            entity.turn = { angle = 0 }
+            entity.schedule = {
+                { 1, [entity.turn] = { angle = -2 } },
+                { math.pi / 2, [entity.turn] = { angle = 0 } }
+            }
+            return entity
+        end,
+
         -- small plane flying south
         ['pv'] = function (x, y)
             return Entity('mobile.plane', x, y,  0, 200)

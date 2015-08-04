@@ -58,4 +58,17 @@ function Vector.toAngle (vx, vy)
     return math.atan2(vy, vx)
 end
 
+-- adjust the angle (in radians) of a vector
+
+function Vector.adjustAngle (vx, vy, angle)
+    if angle == 0 then
+        return vx, vy
+    end
+    
+    local length = Vector.getLength(vx, vy)
+    local vx, vy = Vector.fromAngle(Vector.toAngle(vx, vy) + angle)
+
+    return vx * length, vy * length
+end
+
 return Vector
