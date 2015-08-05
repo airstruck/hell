@@ -1,6 +1,5 @@
 return function (positionX, positionY, velocityX, velocityY)
     return {
-        isEnemyBullet = true,
         size = 15,
         damage = { value = 4 },
         position = { x = positionX, y = positionY },

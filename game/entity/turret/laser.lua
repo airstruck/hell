@@ -1,7 +1,6 @@
 return function (positionX, positionY)
     return {
         isEnemy = true,
-        isTurret = true,
         fire = { interval = 0.25 },
         tracking = { angle = 0 },
         size = 2,

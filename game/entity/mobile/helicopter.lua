@@ -2,7 +2,6 @@
 
 return function (positionX, positionY, velocityX, velocityY)
     return {
-        isEnemy = true,
         size = 20,
         offset = { x = 50, y = 0 },
         bullet = { name = 'bullet.missile', speed = 250 },
