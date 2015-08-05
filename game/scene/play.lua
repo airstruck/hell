@@ -4,8 +4,6 @@ local Scene = require('game.scene'):extend()
 
 local Update = require 'game.system.update'
 local Draw = require 'game.system.draw'
-local Entity = require 'game.entity'
-local Music = require 'game.music'
 
 function Scene:load (level, entities)
 
