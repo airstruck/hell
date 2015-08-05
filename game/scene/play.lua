@@ -25,7 +25,7 @@ function Scene:load (level, entities)
 
     self:on('keypressed', function(key)
         if key == 'escape' then
-            self.stage:loadScene('menu', level, entities)
+            self:loadScene('menu', level, entities)
         end
     end)
 
@@ -35,7 +35,7 @@ function Scene:load (level, entities)
         end
         if entity.isPlayer then
             self:delay(1, function ()
-                self.stage:loadScene('menu')
+                self:loadScene('menu')
             end)
         end
     end)

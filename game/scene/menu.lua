@@ -50,9 +50,9 @@ function Scene:load (level, entities)
             if not level then
                 restart()
             end
-            self.stage:loadScene('play', level, entities)
+            self:loadScene('play', level, entities)
         elseif level and key == 'q' then
-            self.stage:loadScene('menu')
+            self:loadScene('menu')
         end
     end)
 

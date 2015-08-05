@@ -26,6 +26,7 @@ function Scene:load ()
 
 end
 
+
 function Scene:unload ()
     self:removeHandlers()
 end
@@ -40,6 +41,10 @@ function Scene:delay (time, callback)
             callback()
         end
     end)
+end
+
+function Scene:loadScene (...)
+    return self.stage:loadScene(...)
 end
 
 return Scene
