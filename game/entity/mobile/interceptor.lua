@@ -3,7 +3,7 @@
 return function (positionX, positionY, velocityX, velocityY)
     return {
         isEnemy = true,
-        bulletType = 'bullet.pulse',
+        bullet = { name = 'bullet.pulse', speed = 250 },
         fire = { interval = 1 },
         position = { x = positionX, y = positionY },
         velocity = { x = velocityX, y = velocityY },

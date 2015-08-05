@@ -5,8 +5,7 @@ return function (positionX, positionY)
     return {
         isEnemy = true,
         isTurret = true,
-        bulletType = 'bullet.chain',
-        bulletSpeed = 150,
+        bullet = { name = 'bullet.chain', speed = 150 },
         fire = { interval = 0.2 },
         trackingAngle = { value = 0 },
         size = 15,

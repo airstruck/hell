@@ -25,6 +25,8 @@ Event.on('keypressed', function(key)
     end
 end)
 
+love.graphics.setDefaultFilter('nearest', 'nearest')
+
 -- set the stage with the title scene
 
 require 'game.stage' 'menu'

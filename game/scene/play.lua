@@ -14,7 +14,7 @@ function Scene:load (level, entities)
         end
     end)
 
-    self:on('draw', function (dt)
+    self:on('draw', function ()
         Draw.sprite(entities)
         if _G.HELL_DEBUG then
             Draw.hitbox(entities)

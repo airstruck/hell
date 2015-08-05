@@ -125,24 +125,21 @@ function (p, trackingAngle, entities, dt)
     trackingAngle.value = Vector.toAngle(Vector.fromPoints(p.x, p.y, x, y))
 end)
 
-local function spawnBullets (p, fireAngles, fire,
-        bulletType, bulletSpeed, entity, entities)
+local function spawnBullets (p, fireAngles, fire, bullet, entities)
 
     if fire.delay and fire.delay > 0 then
         return
     end
     fire.delay = fire.interval
 
-    local decorate = entity.bulletDecorator
-
     for _, angle in ipairs(fireAngles) do
         local vx, vy = Vector.fromAngle(angle)
-        vx = vx * bulletSpeed; vy = vy * bulletSpeed
-        local bullet = Entity(bulletType, p.x, p.y, vx, vy)
-        if decorate then
-            decorate(bullet)
+        vx = vx * bullet.speed; vy = vy * bullet.speed
+        local entity = Entity(bullet.name, p.x, p.y, vx, vy)
+        if bullet.decorate then
+            bullet.decorate(entity)
         end
-        entities[#entities + 1] = bullet
+        entities[#entities + 1] = entity
     end
 
     System.invalidate(entities)
@@ -151,31 +148,27 @@ end
 -- fire a bullet at player
 
 Update.trackingFire = System(
-{ 'position', 'trackingAngle', 'fire', 'bulletType',
-    'bulletSpeed', '_entity', '_entities' },
-function (p, trackingAngle, fire, bulletType, bulletSpeed, entity, entities, dt)
-        spawnBullets (p, { trackingAngle.value }, fire,
-                bulletType, bulletSpeed, entity, entities)
+{ 'position', 'trackingAngle', 'fire', 'bullet', '_entities' },
+function (p, trackingAngle, fire, bullet, entities, dt)
+    local fireAngles = { trackingAngle.value }
+    spawnBullets (p, fireAngles, fire, bullet, entities)
 end)
 
 -- fire a bullet straight ahead
 
 Update.forwardFire = System(
-{ 'position', 'velocity', 'fire', 'bulletType',
-    'bulletSpeed', '_entity', '_entities' },
-function (p, v, fire, bulletType, bulletSpeed, entity, entities, dt)
-    spawnBullets (p, { Vector.toAngle(v.x, v.y) }, fire,
-            bulletType, bulletSpeed, entity, entities)
+{ 'position', 'velocity', 'fire', 'bullet', '_entities' },
+function (p, v, fire, bullet, entities, dt)
+    local fireAngles = { Vector.toAngle(v.x, v.y) }
+    spawnBullets (p, fireAngles, fire, bullet, entities)
 end)
 
 -- fire bullets at multiple angles
 
 Update.multiFire = System(
-{ 'position', 'fireAngles', 'fire', 'bulletType',
-    'bulletSpeed', '_entity', '_entities' },
-function (p, fireAngles, fire, bulletType, bulletSpeed, entity, entities, dt)
-    spawnBullets (p, fireAngles, fire,
-            bulletType, bulletSpeed, entity, entities)
+{ 'position', 'fireAngles', 'fire', 'bullet', '_entities' },
+function (p, fireAngles, fire, bullet, entities, dt)
+    spawnBullets (p, fireAngles, fire, bullet, entities)
 end)
 
 -- remove entities when they go out of bounds

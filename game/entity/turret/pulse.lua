@@ -20,9 +20,8 @@ return function (positionX, positionY, fireAngleCount)
     return {
         isEnemy = true,
         isTurret = true,
-        bulletType = 'bullet.pulse',
-        bulletSpeed = 100,
         size = 15,
+        bullet = { name = 'bullet.pulse', speed = 100 },
         fire = { interval = 1 },
         fireAngles = calculateFireAngles(fireAngleCount),
         position = { x = positionX, y = positionY },

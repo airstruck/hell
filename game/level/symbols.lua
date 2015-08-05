@@ -14,7 +14,7 @@ return function ()
         ['pJ'] = function (x, y)
             local spawner = Entity('spawner.plane', x, y)
 
-            function spawner.bulletDecorator (plane)
+            function spawner.bullet.decorate (plane)
                 plane.turn = { angle = 0 }
                 plane.schedule = {
                     { 1, [plane.turn] = { angle = 2 } },
@@ -29,7 +29,7 @@ return function ()
         ['pL'] = function (x, y)
             local spawner = Entity('spawner.plane', x, y)
 
-            function spawner.bulletDecorator (plane)
+            function spawner.bullet.decorate (plane)
                 plane.turn = { angle = 0 }
                 plane.schedule = {
                     { 1, [plane.turn] = { angle = -2 } },
