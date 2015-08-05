@@ -32,10 +32,8 @@ Update.collision = System(
 function (posA, sizeA, damage, entityA, indexA, entities)
     for posB, sizeB, health, entityB, indexB
     in System.each(entities, colliderComponents, System.reverse) do
-        if (posA ~= posB)
-        and (entityA.isFriendly ~= entityB.isFriendly)
+        if (entityA.isFriendly ~= entityB.isFriendly)
         and checkCollision(posA, sizeA, posB, sizeB) then
-            -- Event.dispatch('collision', entityA, entityB)
             health.pain = health.pain + damage.value
             health.value = health.value - damage.value
             table.remove(entities, indexA)
@@ -117,12 +115,12 @@ end)
 
 -- track player position and update fire angle
 
-Update.trackingAngle = System(
-{ 'position', 'trackingAngle', '_entities' },
-function (p, trackingAngle, entities, dt)
+Update.tracking = System(
+{ 'position', 'tracking', '_entities' },
+function (p, tracking, entities, dt)
     local player = entities[1]
     local x, y = player.position.x, player.position.y
-    trackingAngle.value = Vector.toAngle(Vector.fromPoints(p.x, p.y, x, y))
+    tracking.angle = Vector.toAngle(Vector.fromPoints(p.x, p.y, x, y))
 end)
 
 local function spawnBullets (p, fireAngles, fire, bullet, entities)
@@ -148,9 +146,9 @@ end
 -- fire a bullet at player
 
 Update.trackingFire = System(
-{ 'position', 'trackingAngle', 'fire', 'bullet', '_entities' },
-function (p, trackingAngle, fire, bullet, entities, dt)
-    local fireAngles = { trackingAngle.value }
+{ 'position', 'tracking', 'fire', 'bullet', '_entities' },
+function (p, tracking, fire, bullet, entities, dt)
+    local fireAngles = { tracking.angle }
     spawnBullets (p, fireAngles, fire, bullet, entities)
 end)
 

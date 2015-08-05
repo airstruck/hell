@@ -3,7 +3,7 @@ return function (positionX, positionY)
         isEnemy = true,
         isTurret = true,
         fire = { interval = 0.25 },
-        trackingAngle = { value = 0 },
+        tracking = { angle = 0 },
         size = 2,
         position = { x = positionX, y = positionY }
     }

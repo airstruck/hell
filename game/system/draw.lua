@@ -27,8 +27,8 @@ function (p, name, entity)
     local kx, ky = 0, 0 -- shear
 
     local angle = entity.fixedAngle
-        or entity.trackingAngle
-        and entity.trackingAngle.value
+        or entity.tracking
+        and entity.tracking.angle
         or entity.velocity
         and Vector.toAngle(entity.velocity.x, entity.velocity.y)
         or 0

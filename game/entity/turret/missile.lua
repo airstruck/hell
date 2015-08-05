@@ -7,7 +7,7 @@ return function (positionX, positionY)
         isTurret = true,
         bullet = { name = 'bullet.missile', speed = 200 },
         fire = { interval = 2 },
-        trackingAngle = { value = 0 },
+        tracking = { angle = 0 },
         size = 15,
         position = { x = positionX, y = positionY },
         health = { value = 8, max = 8, pain = 0 }
