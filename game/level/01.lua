@@ -5,15 +5,15 @@ mapString = [[
         D*              D*
 
 
-p>
+
                 pv
-                                <p
-p>            D4
+
+              D4
                 pv      D4
-        D4                      <p
-p>                D4
+        D4
+                  D4
                 pv
-                                <p
+
 
 
 
@@ -36,22 +36,14 @@ h>              D8
                                 <h
                                 <h
 
-        p>
-        p>
-        p>
-        p>
-        p>      pv
-                        CT
-                pv  D4
-                D4
-            D4  pv
-        CT
-                pv      <p
-                        <p
-                        <p
-                        <p
-                        <p
 
+                pv
+                        CT
+                    D4
+                D4
+            D4
+        CT
+                pv
 
 
 D2      pL
@@ -66,7 +58,7 @@ D2                      pJ
 
         pL                      D2
 
-                CT
+        D2      CT
 
                         pJ
 

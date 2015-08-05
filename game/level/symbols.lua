@@ -4,7 +4,13 @@ local Vector = require 'game.vector'
 
 return function ()
     return {
-        -- small plane flying south, looping west to north
+
+        -- small planes flying south
+        ['pv'] = function (x, y)
+            local spawner = Entity('spawner.plane', x, y)
+        end,
+
+        -- small planes flying south, looping west to north
         ['pJ'] = function (x, y)
             local spawner = Entity('spawner.plane', x, y)
 
@@ -19,7 +25,7 @@ return function ()
             return spawner
         end,
 
-        -- small plane flying south, looping east to north
+        -- small planes flying south, looping east to north
         ['pL'] = function (x, y)
             local spawner = Entity('spawner.plane', x, y)
 
@@ -34,29 +40,14 @@ return function ()
             return spawner
         end,
 
-        -- small plane flying south
-        ['pv'] = function (x, y)
-            return Entity('mobile.plane', x, y,  0, 200)
-        end,
-
-        -- small plane flying southeast
-        ['p>'] = function (x, y)
-            return Entity('mobile.plane', x, y,  50, 200)
-        end,
-
-        -- small plane flying southwest
-        ['<p'] = function (x, y)
-            return Entity('mobile.plane', x, y,  -50, 200)
-        end,
-
         -- helicopter flying southeast
         ['h>'] = function (x, y)
-            return Entity('mobile.helicopter', x, y,  50, 200)
+            return Entity('mobile.helicopter', x, y,  50, 100)
         end,
 
         -- helicopter flying southwest
         ['<h'] = function (x, y)
-            return Entity('mobile.helicopter', x, y,  -50, 200)
+            return Entity('mobile.helicopter', x, y,  -50, 100)
         end,
 
         -- laser turret southeast
