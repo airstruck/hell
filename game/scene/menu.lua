@@ -4,6 +4,7 @@ local Scene = require('game.scene'):extend()
 
 local Entity = require 'game.entity'
 local Music = require 'game.music'
+local Shader = require 'game.shader'
 
 
 function Scene:load (level, entities)
@@ -18,7 +19,18 @@ function Scene:load (level, entities)
         entities = { Entity('player') }
     end
 
-    self:on('draw', function (dt)
+    local time = 0
+    self:on('update', function (dt)
+        time = time + dt
+    end)
+
+    self:on('draw', function ()
+        Shader.set('demo'):send('time', time * 0.5)
+        love.graphics.rectangle('fill', 0, 0, 800, 600)
+        Shader.unset()
+        love.graphics.setColor(0, 0, 0, 200)
+        love.graphics.rectangle('fill', 0, 0, 200, 600)
+
         love.graphics.setColor(255, 255, 255)
         love.graphics.print('Hell version ' .. _G.HELL_VERSION, 50, 50)
         if level then

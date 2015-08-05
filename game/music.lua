@@ -1,5 +1,4 @@
--- A scene represents a "game state" or "screen."
--- For example, the title screen or the gameplay state.
+-- simple music manager
 
 local Music = {}
 

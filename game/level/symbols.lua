@@ -6,24 +6,32 @@ return function ()
     return {
         -- small plane flying south, looping west to north
         ['pJ'] = function (x, y)
-            local entity = Entity('mobile.plane', x, y,  0, 200)
-            entity.turn = { angle = 0 }
-            entity.schedule = {
-                { 1, [entity.turn] = { angle = 2 } },
-                { math.pi / 2, [entity.turn] = { angle = 0 } }
-            }
-            return entity
+            local spawner = Entity('spawner.plane', x, y)
+
+            function spawner.bulletDecorator (plane)
+                plane.turn = { angle = 0 }
+                plane.schedule = {
+                    { 1, [plane.turn] = { angle = 2 } },
+                    { math.pi / 2, [plane.turn] = { angle = 0 } }
+                }
+            end
+
+            return spawner
         end,
 
         -- small plane flying south, looping east to north
         ['pL'] = function (x, y)
-            local entity = Entity('mobile.plane', x, y,  0, 200)
-            entity.turn = { angle = 0 }
-            entity.schedule = {
-                { 1, [entity.turn] = { angle = -2 } },
-                { math.pi / 2, [entity.turn] = { angle = 0 } }
-            }
-            return entity
+            local spawner = Entity('spawner.plane', x, y)
+
+            function spawner.bulletDecorator (plane)
+                plane.turn = { angle = 0 }
+                plane.schedule = {
+                    { 1, [plane.turn] = { angle = -2 } },
+                    { math.pi / 2, [plane.turn] = { angle = 0 } }
+                }
+            end
+
+            return spawner
         end,
 
         -- small plane flying south
@@ -66,7 +74,7 @@ return function ()
             return Entity('turret.pulse', x, y,  2)
         end,
 
-        -- directional turret, 4 way
+        -- pulse turret, 4 way
         ['D4'] = function (x, y)
             return Entity('turret.pulse', x, y, 4)
         end,

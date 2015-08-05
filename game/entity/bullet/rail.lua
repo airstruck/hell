@@ -7,7 +7,6 @@ return function (positionX, positionY, velocityX, velocityY)
         velocity = { x = velocityX, y = velocityY },
         bulletType = 'particle.rail',
         bulletSpeed = 0,
-        fireInterval = 0.01,
-        fireDelay = { value = 0 },
+        fire = { interval = 0.01 },
     }
 end

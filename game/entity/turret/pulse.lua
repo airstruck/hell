@@ -21,11 +21,10 @@ return function (positionX, positionY, fireAngleCount)
         isEnemy = true,
         isTurret = true,
         bulletType = 'bullet.pulse',
-        bulletSpeed = 200,
-        fireInterval = 1,
-        fireDelay = { value = 0 },
-        fireAngles = calculateFireAngles(fireAngleCount),
+        bulletSpeed = 100,
         size = 15,
+        fire = { interval = 1 },
+        fireAngles = calculateFireAngles(fireAngleCount),
         position = { x = positionX, y = positionY },
         health = { value = 8, max = 8, pain = 0 }
     }

@@ -20,6 +20,8 @@ local spriteScale = 0.5
 Draw.sprite = System(
 { 'position', 'name', '_entity' },
 function (p, name, entity)
+    if entity.isInvisible then return end
+    
     local image, width, height = getSprite(name)
     local ox, oy = width * 0.5, height * 0.5 -- offset
     local kx, ky = 0, 0 -- shear

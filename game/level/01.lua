@@ -52,40 +52,25 @@ h>              D8
                         <p
                         <p
 
-        pv
-        pv
-D2      pv
 
-                pv              D2
-                pv
+
+D2      pL
+
+                                D2
+
 D2              pv
 
-                        pv      D2
-                        pv
-D2                      pv
+                                D2
+
+D2                      pJ
 
         pL                      D2
-        pL
-        pL
-        pL
-        pL
 
+                CT
 
-  CT
-                pJ
-                pL
-                pJ
-                pL
-                pJ
-                pL
+                        pJ
 
-        RT              RT
-                              CT
-                        pJ
-                        pJ
-                        pJ
-                        pJ
-                        pJ
+                        D2
 ]]
 
 })

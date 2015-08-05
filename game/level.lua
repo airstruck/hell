@@ -28,8 +28,11 @@ function Level:loadMap (mapString)
 end
 
 local scroll = System(
-{ 'position' },
-function (p, dt, scrollSpeed)
+{ 'position', '_entity' },
+function (p, entity, dt, scrollSpeed)
+    if entity.isStationary then
+        return
+    end
     p.y = p.y + scrollSpeed * dt
 end)
 
