@@ -9,6 +9,6 @@ return function (positionX, positionY)
         fire = { interval = 2 },
         bullet = { name = 'bullet.rail', speed = 1000 },
         position = { x = positionX, y = positionY },
-        health = { value = 10, max = 10, pain = 0 }
+        health = { value = 10 }
     }
 end

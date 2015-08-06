@@ -34,7 +34,7 @@ function (posA, sizeA, damage, entityA, indexA, entities)
     in System.each(entities, colliderComponents, System.reverse) do
         if (entityA.isFriendly ~= entityB.isFriendly)
         and checkCollision(posA, sizeA, posB, sizeB) then
-            health.pain = health.pain + damage.value
+            health.pain = (health.pain or 0) + damage.value
             health.value = health.value - damage.value
             table.remove(entities, indexA)
             spawn(entities, 5, 'particle.spark', posA.x, posA.y)
@@ -98,19 +98,51 @@ end)
 
 -- update delay time until next bullet can be fired
 
-Update.fireDelay = System(
-{ 'fire' },
-function (fire, dt)
+local function updateFireInterval (fire, dt)
     if not fire.delay then
         fire.delay = 0
         return
     end
+
     if fire.delay > 0 then
         fire.delay = fire.delay - dt
     end
+
     if fire.delay < 0 then
         fire.delay = 0
     end
+end
+
+-- some enemy weapons overheat and need to cool down
+
+local function updateFireCooldown (fire, dt)
+    if not (fire.warmup and fire.cooldown) then
+        return
+    end
+
+    if not fire.heat then
+        fire.heat = 0
+    end
+
+    if fire.isCoolingDown then
+        fire.heat = fire.heat - dt
+    else
+        fire.heat = fire.heat + dt
+    end
+
+    if fire.heat >= fire.warmup then
+        fire.isCoolingDown = true
+        fire.heat = fire.cooldown
+    elseif fire.heat <= 0 then
+        fire.isCoolingDown = false
+    end
+end
+
+Update.fire = System(
+{ 'fire' },
+function (fire, dt)
+    updateFireInterval(fire, dt)
+    updateFireCooldown(fire, dt)
 end)
 
 -- track player position and update fire angle
@@ -124,8 +156,7 @@ function (p, tracking, entities, dt)
 end)
 
 local function spawnBullets (p, fireAngles, fire, bullet, entities)
-
-    if fire.delay and fire.delay > 0 then
+    if fire.isCoolingDown or (fire.delay and fire.delay > 0) then
         return
     end
     fire.delay = fire.interval
@@ -200,7 +231,7 @@ end, System.reverse)
 Update.pain = System(
 { 'health' },
 function (health, dt)
-    if health.pain > 0 then
+    if health.pain and health.pain > 0 then
         health.pain = health.pain - dt * 4
     end
 end)

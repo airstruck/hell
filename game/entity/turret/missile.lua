@@ -9,6 +9,6 @@ return function (positionX, positionY)
         tracking = { angle = 0 },
         size = 15,
         position = { x = positionX, y = positionY },
-        health = { value = 8, max = 8, pain = 0 }
+        health = { value = 8 }
     }
 end

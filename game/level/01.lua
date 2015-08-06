@@ -6,17 +6,13 @@ mapString = [[
 
 
 
-                pv
+                pL
 
               D4
                 pv      D4
         D4
                   D4
-                pv
-
-
-
-
+                pJ
 
 
   CT                          CT
@@ -40,21 +36,17 @@ h>              D8
                 pv
                         CT
                     D4
-                D4
+
             D4
         CT
                 pv
 
 
-D2      pL
+D2
 
                                 D2
 
-D2              pv
-
-                                D2
-
-D2                      pJ
+D2
 
         pL                      D2
 
@@ -62,7 +54,7 @@ D2                      pJ
 
                         pJ
 
-                        D2
+                        CT
 ]]
 
 })

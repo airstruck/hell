@@ -50,7 +50,7 @@ function (p, name, entity)
 
     if entity.health then
         local pain = entity.health.pain
-        if pain > 0 then
+        if pain and pain > 0 then
             Shader.set('pain'):send('value', pain)
         end
     end

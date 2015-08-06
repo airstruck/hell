@@ -21,9 +21,9 @@ return function (positionX, positionY, fireAngleCount)
         isEnemy = true,
         size = 15,
         bullet = { name = 'bullet.pulse', speed = 100 },
-        fire = { interval = 1 },
+        fire = { interval = 1.5 },
         fireAngles = calculateFireAngles(fireAngleCount),
         position = { x = positionX, y = positionY },
-        health = { value = 8, max = 8, pain = 0 }
+        health = { value = 6 }
     }
 end
