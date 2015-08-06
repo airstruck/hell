@@ -2,17 +2,36 @@
 
 local Scene = require('game.scene'):extend()
 
-local Update = require 'game.system.update'
-local Draw = require 'game.system.draw'
+local function addSystems (group, module)
+    for _, system in pairs(module) do
+        group[#group + 1] = system
+    end
+end
 
 function Scene:load (level, entities)
 
+    local updateSystems = {}
+    local playerSystems = {}
+    local playerEntities = { entities[1] }
+
+    addSystems(updateSystems, require 'game.system.update.motion')
+    addSystems(updateSystems, require 'game.system.update.fire')
+    addSystems(updateSystems, require 'game.system.update.effect')
+    addSystems(updateSystems, require 'game.system.update')
+
+    addSystems(playerSystems, require 'game.system.update.player')
+
     self:on('update', function (dt)
         level:update(entities, dt)
-        for _, update in pairs(Update) do
+        for _, update in ipairs(updateSystems) do
             update(entities, dt)
         end
+        for _, update in ipairs(playerSystems) do
+            update(playerEntities, dt, entities)
+        end
     end)
+
+    local Draw = require 'game.system.draw'
 
     self:on('draw', function ()
         Draw.sprite(entities)
