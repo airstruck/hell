@@ -5,7 +5,7 @@ return function (positionX, positionY, velocityX, velocityY)
         size = 20,
         offset = { x = 50, y = 0 },
         bullet = { name = 'bullet.missile', speed = 250 },
-        fire = { interval = 2 },
+        fire = { interval = 3 },
         position = { x = positionX, y = positionY },
         velocity = { x = velocityX, y = velocityY },
         health = { value = 5 }

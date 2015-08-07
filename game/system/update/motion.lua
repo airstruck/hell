@@ -62,6 +62,23 @@ function (p, tracking, entities, dt)
     tracking.angle = Vector.toAngle(Vector.fromPoints(p.x, p.y, x, y))
 end)
 
+-- thanks, Jasoco and Davidobot
+local function angleDifference (t1, t2)
+   return (t1 - t2 + math.pi) % (math.pi * 2) - math.pi
+end
+
+-- move towards player
+Motion.homing = System(
+{ 'position', 'velocity', 'homing', 'turn', '_entities' },
+function (p, v, homing, turn, entities, dt)
+    local player = entities[1]
+    local x, y = player.position.x, player.position.y
+    local currentAngle = Vector.toAngle(v.x, v.y)
+    local angleToPlayer = Vector.toAngle(Vector.fromPoints(p.x, p.y, x, y))
+    local diff = angleDifference(currentAngle, angleToPlayer)
+    turn.angle = diff > 0 and -homing.speed or homing.speed
+end)
+
 -- remove entities when they go out of bounds
 
 local boundaryMargin = 64

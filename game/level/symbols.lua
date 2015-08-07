@@ -88,6 +88,11 @@ return function ()
         -- rail turret
         ['RT'] = function (x, y)
             return Entity('turret.rail', x, y)
+        end,
+
+        -- missile turret
+        ['MT'] = function (x, y)
+            return Entity('turret.missile', x, y)
         end
     }
 end
