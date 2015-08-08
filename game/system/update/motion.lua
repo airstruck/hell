@@ -95,4 +95,33 @@ function (p, entities, index)
     end
 end, System.reverse)
 
+-- update position for mounted entities
+
+Motion.mounted = System(
+{ 'mount', 'position', '_index', '_entities' },
+function (mount, p, index, entities)
+    local mountEntity = mount.entity
+    local mountPosition = mountEntity.position
+    local offset = mount.offset
+
+    if mountEntity.health and mountEntity.health.value <= 0 then
+        table.remove(entities, index)
+        mount.entity = nil
+        return
+    end
+
+    if offset then
+        local offsetX, offsetY = offset.x, offset.y
+        local mountVelocity = mountEntity.velocity
+        local mountAngle = Vector.toAngle(mountVelocity.x, mountVelocity.y)
+        local cosine, sine = math.cos(mountAngle), math.sin(mountAngle)
+        p.x = mountPosition.x + offsetX * cosine + offsetY * sine
+        p.y = mountPosition.y + offsetY * cosine + offsetX * sine
+    else
+        p.x = mountPosition.x
+        p.y = mountPosition.y
+    end
+end, System.reverse)
+
+
 return Motion

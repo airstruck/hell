@@ -55,7 +55,7 @@ function Level:update (entities, dt)
                 if _G.HELL_DEBUG then
                     print('level symbol: ' .. symbol)
                 end
-                entities[#entities + 1] = self.symbols[symbol](x, y)
+                self.symbols[symbol](entities, x, y)
             end
         end
         self.nextRow = self.nextRow + 1

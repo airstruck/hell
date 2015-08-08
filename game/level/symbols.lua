@@ -2,16 +2,35 @@ local Entity = require 'game.entity'
 
 local Vector = require 'game.vector'
 
+local function spawn (entities, entity)
+    local index = #entities + 1
+    entities[index] = entity
+    if not entity.attachments then
+        return
+    end
+    for _, attachment in ipairs(entity.attachments) do
+        index = index + 1
+        entities[index] = attachment
+    end
+end
+
 return function ()
     return {
 
+        -- truck moving south
+        ['tv'] = function (entities, x, y)
+            local entity = Entity('mobile.truck', x, y, 10, 10)
+            entity.turn = { angle = -0.1 }
+            spawn(entities, entity)
+        end,
+
         -- small planes flying south
-        ['pv'] = function (x, y)
-            local spawner = Entity('spawner.plane', x, y)
+        ['pv'] = function (entities, x, y)
+            spawn(entities, Entity('spawner.plane', x, y))
         end,
 
         -- small planes flying south, looping west to north
-        ['pJ'] = function (x, y)
+        ['pJ'] = function (entities, x, y)
             local spawner = Entity('spawner.plane', x, y)
 
             function spawner.bullet.decorate (plane)
@@ -22,11 +41,11 @@ return function ()
                 }
             end
 
-            return spawner
+            spawn(entities, spawner)
         end,
 
         -- small planes flying south, looping east to north
-        ['pL'] = function (x, y)
+        ['pL'] = function (entities, x, y)
             local spawner = Entity('spawner.plane', x, y)
 
             function spawner.bullet.decorate (plane)
@@ -37,62 +56,62 @@ return function ()
                 }
             end
 
-            return spawner
+            spawn(entities, spawner)
         end,
 
         -- helicopter flying southeast
-        ['h>'] = function (x, y)
-            return Entity('mobile.helicopter', x, y,  50, 100)
+        ['h>'] = function (entities, x, y)
+            spawn(entities, Entity('mobile.helicopter', x, y,  50, 100))
         end,
 
         -- helicopter flying southwest
-        ['<h'] = function (x, y)
-            return Entity('mobile.helicopter', x, y,  -50, 100)
+        ['<h'] = function (entities, x, y)
+            spawn(entities, Entity('mobile.helicopter', x, y,  -50, 100))
         end,
 
         -- laser turret southeast
-        ['L>'] = function (x, y)
-            return Entity('turret.laser', x, y,  1, 1)
+        ['L>'] = function (entities, x, y)
+            spawn(entities, Entity('turret.laser', x, y,  1, 1))
         end,
 
         -- laser turret southwest
         ['<L'] = function (x, y)
-            return Entity('turret.laser', x, y,  -1, 1)
+            spawn(entities, Entity('turret.laser', x, y,  -1, 1))
         end,
 
         -- pulse turret, 2 way
-        ['D2'] = function (x, y)
-            return Entity('turret.pulse', x, y,  2)
+        ['D2'] = function (entities, x, y)
+            spawn(entities, Entity('turret.pulse', x, y,  2))
         end,
 
         -- pulse turret, 4 way
-        ['D4'] = function (x, y)
-            return Entity('turret.pulse', x, y, 4)
+        ['D4'] = function (entities, x, y)
+            spawn(entities, Entity('turret.pulse', x, y, 4))
         end,
 
         -- pulse turret, 8 way
-        ['D8'] = function (x, y)
-            return Entity('turret.pulse', x, y, 8)
+        ['D8'] = function (entities, x, y)
+            spawn(entities, Entity('turret.pulse', x, y, 8))
         end,
 
         -- pulse turret, 16 way
-        ['D*'] = function (x, y)
-            return Entity('turret.pulse', x, y, 16)
+        ['D*'] = function (entities, x, y)
+            spawn(entities, Entity('turret.pulse', x, y, 16))
         end,
 
         -- chain turret
-        ['CT'] = function (x, y)
-            return Entity('turret.chain', x, y)
+        ['CT'] = function (entities, x, y)
+            spawn(entities, Entity('turret.chain', x, y))
         end,
 
         -- rail turret
-        ['RT'] = function (x, y)
-            return Entity('turret.rail', x, y)
+        ['RT'] = function (entities, x, y)
+            spawn(entities, Entity('turret.rail', x, y))
         end,
 
         -- missile turret
-        ['MT'] = function (x, y)
-            return Entity('turret.missile', x, y)
+        ['MT'] = function (entities, x, y)
+            spawn(entities, Entity('turret.missile', x, y))
         end
     }
 end

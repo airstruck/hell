@@ -15,6 +15,7 @@ Update.death = System(
 function (p, health, index, entities, dt)
     if health.value <= 0 then
         local entity = table.remove(entities, index)
+        entity.attachments = nil
         Entity.spawn(entities, 5, 'particle.explosion', p.x, p.y)
         System.invalidate(entities)
         Event.dispatch('death', entity)
