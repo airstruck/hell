@@ -33,8 +33,13 @@ function Scene:load (level, entities)
 
     local Draw = require 'game.system.draw'
 
+    local spriteSheet = love.graphics.newImage('resource/sprite.png')
+    local spriteBatch = love.graphics.newSpriteBatch(spriteSheet)
+
     self:on('draw', function ()
-        Draw.sprite(entities)
+        spriteBatch:clear()
+        Draw.sprite(entities, spriteBatch)
+        love.graphics.draw(spriteBatch)
         if _G.HELL_DEBUG then
             Draw.hitbox(entities)
         end

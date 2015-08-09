@@ -13,16 +13,28 @@ local getSprite = Memoize(function (name)
     return image, image:getWidth(), image:getHeight()
 end)
 
+local atlas = require 'resource.atlas'
+
+local getQuad = Memoize(function (name)
+    local info = atlas[name]
+    local quad = love.graphics.newQuad(info.x, info.y, info.width, info.height,
+        1024, 1024) -- FIXME
+    return quad, info.width, info.height
+end)
+
+
 local spriteScale = 0.5
 
 -- draw sprite
 
 Draw.sprite = System(
 { 'position', 'name', '_entity' },
-function (p, name, entity)
+function (p, name, entity, spriteBatch)
     if entity.isInvisible then return end
 
-    local image, width, height = getSprite(name)
+    -- local image, width, height = getSprite(name)
+    local quad, width, height = getQuad(name)
+
     local ox, oy = width * 0.5, height * 0.5 -- offset
     local kx, ky = 0, 0 -- shear
 
@@ -46,16 +58,25 @@ function (p, name, entity)
 
     local alpha = entity.fade and 255 - entity.fade.value * 255 or 255
 
-    love.graphics.setColor(255, 255, 255, alpha)
+    local hasShader = false
 
     if entity.health then
         local pain = entity.health.pain
         if pain and pain > 0 then
+            hasShader = true
             Shader.set('pain'):send('value', pain)
         end
     end
 
-    love.graphics.draw(image, p.x, p.y, angle, scale, scale, ox, oy, kx, ky)
+    if hasShader or alpha ~= 255 then
+        love.graphics.setColor(255, 255, 255, alpha)
+        local image = getSprite(name)
+        love.graphics.draw(image, p.x, p.y, angle, scale, scale, ox, oy, kx, ky)
+        love.graphics.setColor(255, 255, 255, 255)
+    else
+        spriteBatch:add(quad, p.x, p.y, angle, scale, scale, ox, oy, kx, ky)
+    end
+    -- love.graphics.draw(image, p.x, p.y, angle, scale, scale, ox, oy, kx, ky)
 
     Shader.unset()
 end)

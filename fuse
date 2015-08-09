@@ -1,1 +1,12 @@
+atlas='resource/atlas.lua'
+
+echo 'return {' > $atlas
+gzip -dk -S svgz resource/sprite.svgz -c | \
+xmlstarlet sel -T -t -m '//svg:rect[starts-with(@id,"sprite.")]' \
+-o "['" -v "substring-after(@id, 'sprite.')" \
+-o "'] = { x = " -v "@x" -o ", y = " -v "@y" \
+-o ", width = " -v "@width" \
+-o ", height = " -v "@height" -o " }, " -n >> $atlas
+echo '}' >> $atlas
+
 rm ../hell.love; zip -r ../hell.love . -x *.git* -x fuse
