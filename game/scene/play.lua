@@ -2,6 +2,8 @@
 
 local Scene = require('game.scene'):extend()
 
+local Shader = require('game.shader')
+
 local function addSystems (group, module)
     for _, system in pairs(module) do
         group[#group + 1] = system
@@ -39,7 +41,9 @@ function Scene:load (level, entities)
     self:on('draw', function ()
         spriteBatch:clear()
         Draw.sprite(entities, spriteBatch)
+        Shader.set('pain')
         love.graphics.draw(spriteBatch)
+        Shader.unset()
         if _G.HELL_DEBUG then
             Draw.hitbox(entities)
         end

@@ -23,6 +23,9 @@ Effect.pain = System(
 function (health, dt)
     if health.pain and health.pain > 0 then
         health.pain = health.pain - dt * 4
+        if health.pain < 0 then
+            health.pain = 0
+        end
     end
 end)
 

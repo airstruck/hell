@@ -6,13 +6,6 @@ local Memoize = require 'lib.knife.memoize'
 local Vector = require 'game.vector'
 local Shader = require 'game.shader'
 
-local newImage = love.graphics.newImage
-
-local getSprite = Memoize(function (name)
-    local image = newImage(('resource/sprite/%s.png'):format(name))
-    return image, image:getWidth(), image:getHeight()
-end)
-
 local atlas = require 'resource.atlas'
 
 local getQuad = Memoize(function (name)
@@ -60,23 +53,14 @@ function (p, name, entity, spriteBatch)
 
     local hasShader = false
 
-    if entity.health then
-        local pain = entity.health.pain
-        if pain and pain > 0 then
-            hasShader = true
-            Shader.set('pain'):send('value', pain)
-        end
+    local pain = entity.health and entity.health.pain or 0
+
+    if pain > 0.5 then
+        pain = 0.5
     end
 
-    if hasShader or alpha ~= 255 then
-        love.graphics.setColor(255, 255, 255, alpha)
-        local image = getSprite(name)
-        love.graphics.draw(image, p.x, p.y, angle, scale, scale, ox, oy, kx, ky)
-        love.graphics.setColor(255, 255, 255, 255)
-    else
-        spriteBatch:add(quad, p.x, p.y, angle, scale, scale, ox, oy, kx, ky)
-    end
-    -- love.graphics.draw(image, p.x, p.y, angle, scale, scale, ox, oy, kx, ky)
+    spriteBatch:setColor(pain * 255, 0, 0, alpha)
+    spriteBatch:add(quad, p.x, p.y, angle, scale, scale, ox, oy, kx, ky)
 
     Shader.unset()
 end)
