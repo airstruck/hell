@@ -17,23 +17,22 @@ end
 
 -- update player velocity from input position
 
-local colliderComponents = { 'position', 'size', 'health', '_entity', '_index' }
+local collide = System(
+{ 'position', 'size', 'damage', '_entity' },
+function (posB, sizeB, damage, entityB, posA, sizeA, health, entityA)
+    if (entityA.isFriendly ~= entityB.isFriendly)
+    and checkCollision(posA, sizeA, posB, sizeB) then
+        health.pain = (health.pain or 0) + damage.value
+        health.value = health.value - damage.value
+        return true, Entity.spawn(5, 'particle.spark', posA.x, posA.y)
+    end
+end)
 
 Motion.collision = System(
-{ 'position', 'size', 'damage', '_entity', '_index', '_entities' },
-function (posA, sizeA, damage, entityA, indexA, entities)
-    for posB, sizeB, health, entityB, indexB
-    in System.each(entities, colliderComponents, System.reverse) do
-        if (entityA.isFriendly ~= entityB.isFriendly)
-        and checkCollision(posA, sizeA, posB, sizeB) then
-            health.pain = (health.pain or 0) + damage.value
-            health.value = health.value - damage.value
-            table.remove(entities, indexA)
-            Entity.spawn(entities, 5, 'particle.spark', posA.x, posA.y)
-            System.invalidate(entities)
-        end
-    end
-end, System.reverse)
+{ 'position', 'size', 'health', '_entity', '_entities' },
+function (posA, sizeA, health, entityA, entities)
+    collide(entities, posA, sizeA, health, entityA)
+end)
 
 -- update position from velocity
 
@@ -86,28 +85,26 @@ local windowHeight = love.window.getHeight()
 local windowWidth = love.window.getWidth()
 
 Motion.boundaryRemoval = System(
-{ 'position', '_entities', '_index' },
-function (p, entities, index)
+{ 'position' },
+function (p)
     if p.y < -boundaryMargin or p.y > windowHeight + boundaryMargin
     or p.x < -boundaryMargin or p.x > windowWidth + boundaryMargin then
-        table.remove(entities, index)
-        System.invalidate(entities)
+        return true
     end
-end, System.reverse)
+end)
 
 -- update position for mounted entities
 
 Motion.mounted = System(
-{ 'mount', 'position', '_index', '_entities' },
-function (mount, p, index, entities)
+{ 'mount', 'position' },
+function (mount, p)
     local mountEntity = mount.entity
     local mountPosition = mountEntity.position
     local offset = mount.offset
 
     if mountEntity.health and mountEntity.health.value <= 0 then
-        table.remove(entities, index)
         mount.entity = nil
-        return
+        return true
     end
 
     if offset then
@@ -121,7 +118,7 @@ function (mount, p, index, entities)
         p.x = mountPosition.x
         p.y = mountPosition.y
     end
-end, System.reverse)
+end)
 
 
 return Motion

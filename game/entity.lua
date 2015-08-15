@@ -1,17 +1,20 @@
 local Entity = {}
 
-local Memoize = require 'lib.knife.memoize'
+local Memo = require 'game.memo'
 
-local qualify = Memoize(function (name)
+local qualify = Memo(function (name)
     return 'game.entity.' .. name
 end)
 
-function Entity.spawn (entities, amount, name, ...)
-    local offset = #entities + 1
+function Entity.spawn (amount, name, ...)
+    local entities = {}
+    local offset = 1
 
-    for index = offset, offset + amount do
+    for index = 1, amount do
         entities[index] = Entity(name, ...)
     end
+
+    return entities
 end
 
 return setmetatable(Entity, {

@@ -22,7 +22,7 @@ end)
 
 Player.fire = System(
 { 'isPlayer', 'position', 'fire' },
-function (_, p, fire, dt, entities)
+function (_, p, fire, dt)
     if not Input.getFireButton() then
         return
     end
@@ -30,7 +30,7 @@ function (_, p, fire, dt, entities)
         return
     end
     fire.delay = fire.interval
-    entities[#entities + 1] = Entity('bullet.player', p.x, p.y, 0, -500)
+    return false, { Entity('bullet.player', p.x, p.y, 0, -500) }
 end)
 
 return Player

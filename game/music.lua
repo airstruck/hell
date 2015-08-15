@@ -2,9 +2,9 @@
 
 local Music = {}
 
-local Memoize = require 'lib.knife.memoize'
+local Memo = require 'game.memo'
 
-local load = Memoize(function (name)
+local load = Memo(function (name)
     return love.audio.newSource(('resource/music/%s'):format(name), 'stream')
 end)
 

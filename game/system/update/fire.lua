@@ -49,7 +49,9 @@ local function updateFireCooldown (fire, dt)
     end
 end
 
-local function spawnBullets (p, fireAngles, fire, bullet, entities)
+local function spawnBullets (p, fireAngles, fire, bullet)
+    local entities = {}
+
     if fire.isCoolingDown or (fire.delay and fire.delay > 0) then
         return
     end
@@ -65,7 +67,7 @@ local function spawnBullets (p, fireAngles, fire, bullet, entities)
         entities[#entities + 1] = entity
     end
 
-    System.invalidate(entities)
+    return entities
 end
 
 -- manage fire interval and cooldown
@@ -80,27 +82,27 @@ end)
 -- fire a bullet at player
 
 Fire.tracking = System(
-{ 'position', 'tracking', 'fire', 'bullet', '_entities' },
-function (p, tracking, fire, bullet, entities, dt)
+{ 'position', 'tracking', 'fire', 'bullet' },
+function (p, tracking, fire, bullet, dt)
     local fireAngles = { tracking.angle }
-    spawnBullets (p, fireAngles, fire, bullet, entities)
+    return false, spawnBullets(p, fireAngles, fire, bullet)
 end)
 
 -- fire a bullet straight ahead
 
 Fire.forward = System(
-{ 'position', 'velocity', 'fire', 'bullet', '_entities' },
-function (p, v, fire, bullet, entities, dt)
+{ 'position', 'velocity', 'fire', 'bullet' },
+function (p, v, fire, bullet, dt)
     local fireAngles = { Vector.toAngle(v.x, v.y) }
-    spawnBullets (p, fireAngles, fire, bullet, entities)
+    return false, spawnBullets(p, fireAngles, fire, bullet)
 end)
 
 -- fire bullets at multiple angles
 
 Fire.multi = System(
-{ 'position', 'fireAngles', 'fire', 'bullet', '_entities' },
-function (p, fireAngles, fire, bullet, entities, dt)
-    spawnBullets (p, fireAngles, fire, bullet, entities)
+{ 'position', 'fireAngles', 'fire', 'bullet' },
+function (p, fireAngles, fire, bullet, dt)
+    return false, spawnBullets(p, fireAngles, fire, bullet)
 end)
 
 return Fire

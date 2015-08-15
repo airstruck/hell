@@ -11,16 +11,15 @@ local Entity = require 'game.entity'
 -- things explode when health drops below zero
 
 Update.death = System(
-{'position', 'health', '_index', '_entities'},
-function (p, health, index, entities, dt)
+{'position', 'health', '_entity' },
+function (p, health, entity, dt)
     if health.value <= 0 then
-        local entity = table.remove(entities, index)
+        -- local entity = table.remove(entities, index)
         entity.attachments = nil
-        Entity.spawn(entities, 5, 'particle.explosion', p.x, p.y)
-        System.invalidate(entities)
         Event.dispatch('death', entity)
+        return true, Entity.spawn(5, 'particle.explosion', p.x, p.y)
     end
-end, System.reverse)
+end)
 
 -- execute scheduled tasks
 

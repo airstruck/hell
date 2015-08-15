@@ -1,20 +1,19 @@
 local Draw = {}
 
 local System = require 'lib.knife.system'
-local Memoize = require 'lib.knife.memoize'
+local Memo = require 'game.memo'
 
 local Vector = require 'game.vector'
 local Shader = require 'game.shader'
 
-local atlas = require 'resource.atlas'
+local Atlas = require 'resource.atlas'
 
-local getQuad = Memoize(function (name)
-    local info = atlas[name]
+local getQuad = Memo(function (name)
+    local info = Atlas[name]
     local quad = love.graphics.newQuad(info.x, info.y, info.width, info.height,
         1024, 1024) -- FIXME
-    return quad, info.width, info.height
+    return quad
 end)
-
 
 local spriteScale = 0.5
 
@@ -23,10 +22,14 @@ local spriteScale = 0.5
 Draw.sprite = System(
 { 'position', 'name', '_entity' },
 function (p, name, entity, spriteBatch)
+    
     if entity.isInvisible then return end
 
     -- local image, width, height = getSprite(name)
-    local quad, width, height = getQuad(name)
+    local quad = getQuad(name)
+    local atlas = Atlas[name]
+    local width, height = atlas.width, atlas.height
+
 
     local ox, oy = width * 0.5, height * 0.5 -- offset
     local kx, ky = 0, 0 -- shear

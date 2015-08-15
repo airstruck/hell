@@ -2,7 +2,9 @@
 
 local Scene = require('game.scene'):extend()
 
-local Shader = require('game.shader')
+local Shader = require 'game.shader'
+
+local System = require 'lib.knife.system'
 
 local function addSystems (group, module)
     for _, system in pairs(module) do
@@ -13,23 +15,17 @@ end
 function Scene:load (level, entities)
 
     local updateSystems = {}
-    local playerSystems = {}
-    local playerEntities = { entities[1] }
 
     addSystems(updateSystems, require 'game.system.update.motion')
     addSystems(updateSystems, require 'game.system.update.fire')
     addSystems(updateSystems, require 'game.system.update.effect')
     addSystems(updateSystems, require 'game.system.update')
-
-    addSystems(playerSystems, require 'game.system.update.player')
+    addSystems(updateSystems, require 'game.system.update.player')
 
     self:on('update', function (dt)
         level:update(entities, dt)
         for _, update in ipairs(updateSystems) do
             update(entities, dt)
-        end
-        for _, update in ipairs(playerSystems) do
-            update(playerEntities, dt, entities)
         end
     end)
 

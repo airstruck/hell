@@ -7,14 +7,13 @@ local System = require 'lib.knife.system'
 -- fade entities out and remove them
 
 Effect.fade = System(
-{ 'fade', '_entities', '_index' },
-function (fade, entities, index, dt)
+{ 'fade' },
+function (fade, dt)
     fade.value = fade.value + fade.speed * dt
     if fade.value >= 1 then
-        table.remove(entities, index)
-        System.invalidate(entities)
+        return true
     end
-end, System.reverse)
+end)
 
 -- update "pain" field in health component
 

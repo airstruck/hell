@@ -1,12 +1,12 @@
 local Shader = {}
 
-local Memoize = require('lib.knife.memoize')
+local Memo = require 'game.memo'
 
 local read = love.filesystem.read
 local new = love.graphics.newShader
 local set = love.graphics.setShader
 
-local load = Memoize(function (name)
+local load = Memo(function (name)
     return new(('resource/shader/%s.glsl'):format(name))
 end)
 

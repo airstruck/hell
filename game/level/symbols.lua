@@ -5,12 +5,11 @@ local Vector = require 'game.vector'
 local function spawn (entities, entity)
     local index = #entities + 1
     entities[index] = entity
-    if not entity.attachments then
-        return
-    end
-    for _, attachment in ipairs(entity.attachments) do
-        index = index + 1
-        entities[index] = attachment
+    if entity.attachments then
+        for _, attachment in ipairs(entity.attachments) do
+            index = index + 1
+            entities[index] = attachment
+        end
     end
 end
 

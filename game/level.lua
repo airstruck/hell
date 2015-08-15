@@ -60,6 +60,8 @@ function Level:update (entities, dt)
         end
         self.nextRow = self.nextRow + 1
     end
+
+    return entities
 end
 
 return Level
