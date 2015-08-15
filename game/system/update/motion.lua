@@ -15,7 +15,7 @@ local function checkCollision (posA, sizeA, posB, sizeB)
     return dx < size and dy < size
 end
 
--- update player velocity from input position
+-- update collision
 
 local collide = System(
 { 'position', 'size', 'damage', '_entity' },
