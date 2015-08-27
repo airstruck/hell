@@ -4,7 +4,6 @@ local System = require 'lib.knife.system'
 local Memo = require 'game.memo'
 
 local Vector = require 'game.vector'
-local Shader = require 'game.shader'
 
 local Atlas = require 'resource.atlas'
 
@@ -54,8 +53,6 @@ function (p, name, entity, spriteBatch)
 
     local alpha = entity.fade and 255 - entity.fade.value * 255 or 255
 
-    local hasShader = false
-
     local pain = entity.health and entity.health.pain or 0
 
     if pain > 0.5 then
@@ -64,8 +61,6 @@ function (p, name, entity, spriteBatch)
 
     spriteBatch:setColor(pain * 255, 0, 0, alpha)
     spriteBatch:add(quad, p.x, p.y, angle, scale, scale, ox, oy, kx, ky)
-
-    Shader.unset()
 end)
 
 -- draw hitbox from size and position
